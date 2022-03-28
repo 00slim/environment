@@ -1,14 +1,5 @@
 {
   "exchanges": [
-    {
-      "name": "jenkins",
-      "vhost": "/",
-      "type": "fanout",
-      "durable": true,
-      "auto_delete": false,
-      "internal": false,
-      "arguments": {}
-    },
 	{
       "name": "work-inbound",
       "vhost": "/",
@@ -38,13 +29,6 @@
     }
   ],
   "queues": [
-    {
-      "name": "jenkins",
-      "vhost": "/",
-      "durable": true,
-      "auto_delete": false,
-      "arguments": {}
-    },
 	{
       "name": "produced-tasks",
       "vhost": "/",
@@ -82,14 +66,6 @@
     }
   ],
   "bindings": [
-    {
-      "source": "jenkins",
-      "vhost": "/",
-      "destination": "jenkins",
-      "destination_type": "queue",
-      "routing_key": "*",
-      "arguments": {}
-    },
 	{
       "source": "work-inbound",
       "vhost": "/",
