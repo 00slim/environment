@@ -1,0 +1,134 @@
+{
+  "exchanges": [
+    {
+      "name": "jenkins",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "work-inbound",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "work-outbound",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "certified-result",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "queues": [
+    {
+      "name": "jenkins",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "produced-tasks",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "produced-tasks-audit",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "preprocessed-tasks",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "preprocessed-tasks-audit",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "certified-results-audit",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "jenkins",
+      "vhost": "/",
+      "destination": "jenkins",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "work-inbound",
+      "vhost": "/",
+      "destination": "produced-tasks",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "work-inbound",
+      "vhost": "/",
+      "destination": "produced-tasks-audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "work-outbound",
+      "vhost": "/",
+      "destination": "preprocessed-tasks",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "work-outbound",
+      "vhost": "/",
+      "destination": "preprocessed-tasks-audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "certified-result",
+      "vhost": "/",
+      "destination": "certified-results-audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    }
+  ]
+}
