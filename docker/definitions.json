@@ -26,7 +26,17 @@
       "auto_delete": false,
       "internal": false,
       "arguments": {}
+    },
+	{
+      "name": "discarded",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
     }
+	
   ],
   "queues": [
 	{
@@ -59,6 +69,13 @@
     },
 	{
       "name": "certified-results-audit",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "discarded-tasks",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
@@ -102,6 +119,14 @@
       "source": "certified-result",
       "vhost": "/",
       "destination": "certified-results-audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "discarded",
+      "vhost": "/",
+      "destination": "discarded-tasks",
       "destination_type": "queue",
       "routing_key": "*",
       "arguments": {}
